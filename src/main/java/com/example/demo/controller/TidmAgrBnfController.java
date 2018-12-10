@@ -21,25 +21,37 @@ public class TidmAgrBnfController {
         return tidmAgrBnf.toString();
     }
 
-    @RequestMapping(value = "/test1/",method = RequestMethod.GET)
+    @RequestMapping(value = "/get/",method = RequestMethod.GET)
     public List<TidmAgrBnf> getAll(){
         return tidmAgrBnfService.getAll();
     }
 
-    @RequestMapping(value = "/test1/{agrId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{agrId}",method = RequestMethod.GET)
     public TidmAgrBnf getById(@PathVariable(value="agrId") long agrId){
         return tidmAgrBnfService.getById(agrId);
     }
 
-    @RequestMapping(value = "/test1/", method = RequestMethod.POST)
+    @RequestMapping(value = "/put/", method = RequestMethod.POST)
     public String put(@RequestBody TidmAgrBnf tidmAgrBnf){
         tidmAgrBnfService.put(tidmAgrBnf);
         return "Record Inserted Sucessfully...";
     }
 
-    @RequestMapping(value = "/test2/", method = RequestMethod.POST)
+    @RequestMapping(value = "/putall/", method = RequestMethod.POST)
     public String putAll(@RequestBody List<TidmAgrBnf> tidmAgrBnfs){
         tidmAgrBnfService.putAll(tidmAgrBnfs);
         return "Records inserted Successfully...";
+    }
+
+    @RequestMapping(value = "/update/", method = RequestMethod.PUT)
+    public String update(@RequestBody TidmAgrBnf tidmAgrBnf){
+        tidmAgrBnfService.update(tidmAgrBnf);
+        return "Record updated successfully";
+    }
+
+    @RequestMapping(value = "/delete/{agrId}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable(value="agrId") long agrId){
+        tidmAgrBnfService.delete(agrId);
+        return "Record deleted successfully";
     }
 }
